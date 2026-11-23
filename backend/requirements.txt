@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+celery
+redis
+sqlalchemy
+psycopg[binary]
+alembic
+packaging
