@@ -1,0 +1,13 @@
+ACME Supplies Ltd
+123 Market Street, Dhaka 1212
+INVOICE
+Invoice Number: INV-2025-0042
+Invoice Date: 2025-03-14
+Due Date: 2025-04-13
+Bill To: Northwind Traders
+Description Qty Unit Price Total
+Widget A 10 12.50 125.00
+Widget B 4 30.00 120.00
+Subtotal 245.00
+Tax (10%) 24.50
+Total Due 269.50
