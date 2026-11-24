@@ -25,3 +25,5 @@ class FileTooLarge(DocumentError):
 
 class OcrFailed(DocumentError):
     code = 'ocr_failed'
+
+
