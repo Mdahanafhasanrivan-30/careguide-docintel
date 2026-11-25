@@ -1,0 +1,40 @@
+# Phase 4 live run, 2026-11-25 22:42 +06
+
+## Documents (filename, status, needs_review, attempts, error_code)
+broken.pdf	failed		2	corrupt_file
+inv_014_scan.jpg	queued		2	llm_unavailable
+inv_009.pdf	done	true	1	
+inv_021.pdf	extracting		3	
+inv_003.pdf	done	false	1	
+inv_004.pdf	done	false	2	
+inv_001.pdf	done	true	6	
+
+## Issues per document (current version)
+{"filename":"broken.pdf","version":null,"source":null,"needs_review":null,"issues":[]}
+{"filename":"inv_014_scan.jpg","version":null,"source":null,"needs_review":null,"issues":[]}
+{"filename":"inv_009.pdf","version":1,"source":"ai","needs_review":true,"issues":["total_mismatch"]}
+{"filename":"inv_021.pdf","version":null,"source":null,"needs_review":null,"issues":[]}
+{"filename":"inv_003.pdf","version":1,"source":"ai","needs_review":false,"issues":[]}
+{"filename":"inv_004.pdf","version":1,"source":"ai","needs_review":false,"issues":[]}
+{"filename":"inv_001.pdf","version":1,"source":"ai","needs_review":true,"issues":["currency_assumed"]}
+
+## inv_009 history
+{"stage":"upload","status":"ok","message":"1895 bytes","duration_ms":null,"created_at":"2026-11-25T16:31:17.182312Z"}
+{"stage":"parse","status":"ok","message":"1 pages, 0 warnings","duration_ms":4,"created_at":"2026-11-25T16:33:17.898060Z"}
+{"stage":"extract","status":"ok","message":"gemini-3.5-flash-lite, 998 in / 674 out tokens, 0 warnings","duration_ms":2424,"created_at":"2026-11-25T16:33:20.329878Z"}
+{"stage":"validate","status":"ok","message":"version 1, 1 issues","duration_ms":2,"created_at":"2026-11-25T16:33:20.333514Z"}
+{"version":1,"source":"ai","needs_review":true,"issue_count":1,"changes":null,"created_at":"2026-11-25T16:33:20.333514Z"}
+
+## Time per stage (ms)
+   stage   | status | count | avg_ms | max_ms 
+-----------+--------+-------+--------+--------
+ extract   | failed |     1 |        |       
+ extract   | ok     |     4 |  13773 |  28311
+ extract   | retry  |     9 |        |       
+ parse     | failed |     2 |        |       
+ parse     | ok     |     6 |    127 |    707
+ reprocess | ok     |     2 |        |       
+ upload    | ok     |     7 |        |       
+ validate  | ok     |     4 |      4 |      9
+(8 rows)
+
