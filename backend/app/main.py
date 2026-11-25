@@ -10,10 +10,11 @@ from app.core.security import require_api_key
 from app.db.session import engine
 from app.workers.celery_app import celery_app
 from app.workers.tasks import ping
+from app.api import documents, search
 
 app = FastAPI(title="Document Intelligence API")
 app.include_router(documents.router)
-
+app.include_router(search.router)
 @app.get("/health")
 def health():
     status = {}

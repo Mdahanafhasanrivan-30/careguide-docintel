@@ -16,6 +16,8 @@ from app.extraction.extract import extract_invoice
 from app.extraction.llm import LLMClient
 from app.pipeline.errors import DocumentError
 from app.pipeline.parser import parse_document
+from app.search.embed import Embedder
+from app.search.index import index_document
 from app.services.records import add_event, save_result, seen_for
 from app.validation.validate import validate_invoice
 
@@ -58,8 +60,22 @@ def wait_for_retry(db: Session, doc_id: uuid.UUID, message: str, seconds: int) -
     add_event(db, doc_id, 'extract', 'retry', doc.error_message)
     db.commit()
 
+def _index(db: Session, doc: Document, make_embedder: Callable[[], Embedder]) -> None:
+    """Build the search index. A failure here must not undo a good extraction: the document
+    stays 'done', the event says the index failed, and scripts/reindex.py can repair it."""
+    started = time.perf_counter()
+    try:
+        count = index_document(db, doc, make_embedder())
+        add_event(db, doc.id, 'index', 'ok', f'{count} chunks', _ms(started))
+        db.commit()
+    except Exception:
+        db.rollback()
+        logger.exception('search index failed for %s', doc.id)
+        add_event(db, doc.id, 'index', 'failed', 'Search index not updated; see the worker log')
+        db.commit()
 
-def process_document(db: Session, doc_id: uuid.UUID, make_llm: Callable[[], LLMClient]) -> str:
+def process_document(db: Session, doc_id: uuid.UUID, make_llm: Callable[[], LLMClient],
+                     make_embedder: Callable[[], Embedder] | None = None) -> str:
     """Returns 'done', 'failed' or 'skipped'. Raises LLMUnavailable so the caller can retry later."""
     if not claim(db, doc_id):
         logger.info('document %s is not queued; skipped', doc_id)
@@ -92,6 +108,8 @@ def process_document(db: Session, doc_id: uuid.UUID, make_llm: Callable[[], LLMC
         add_event(db, doc.id, 'validate', 'ok',
                   f'version {version}, {len(report.issues)} issues', _ms(started))
         db.commit()
+        if make_embedder is not None:    # None in the Phase 4 tests: no index
+            _index(db, doc, make_embedder)
         return 'done'
     except LLMUnavailable:
         db.rollback()

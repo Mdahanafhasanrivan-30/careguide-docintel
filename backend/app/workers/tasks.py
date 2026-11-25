@@ -2,12 +2,13 @@ import time
 import uuid
 
 from celery.utils.log import get_task_logger
-
+from app.search.embed import get_embedder
 from app.db.session import SessionLocal
 from app.extraction.errors import LLMUnavailable
 from app.extraction.llm import make_client
 from app.services.processing import fail, process_document, wait_for_retry
 from app.workers.celery_app import celery_app
+
 
 logger = get_task_logger(__name__)
 
@@ -27,7 +28,7 @@ def process_document_task(self, doc_id: str) -> str:
     document_id = uuid.UUID(doc_id)
     with SessionLocal() as db:
         try:
-            return process_document(db, document_id, make_client)
+            return process_document(db, document_id, make_client, get_embedder)
         except LLMUnavailable as exc:
             tries = self.request.retries
             if tries >= LLM_RETRIES:

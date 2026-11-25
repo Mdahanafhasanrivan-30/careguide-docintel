@@ -75,3 +75,17 @@ class CorrectionIn(BaseModel):
 
 class ReprocessResult(BaseModel):
     queued: list[uuid.UUID]
+
+
+
+class SearchHit(BaseModel):
+    document: DocumentSummary
+    score: float                      # keyword: ts_rank; semantic: cosine similarity; hybrid: RRF
+    snippet: str | None
+
+
+class SearchResponse(BaseModel):
+    query: str
+    mode: str                         # keyword | semantic | hybrid | filter (no query text)
+    count: int
+    hits: list[SearchHit]
