@@ -1,0 +1,41 @@
+{
+  "files": [
+    "e02_shipping.pdf"
+  ],
+  "expected": {
+    "invoice_number": "KT/2025/118",
+    "invoice_date": "2025-09-02",
+    "supplier_name": "Karnaphuli Traders",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "375.00",
+    "tax": "30.00",
+    "total": "430.00",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Stethoscope",
+        "quantity": "3",
+        "unit_price": "85.00",
+        "discount": "",
+        "amount": "255.00"
+      },
+      {
+        "description": "BP monitor",
+        "quantity": "2",
+        "unit_price": "60.00",
+        "discount": "",
+        "amount": "120.00"
+      }
+    ],
+    "adjustments": [
+      {
+        "label": "Shipping",
+        "amount": "25.00"
+      }
+    ]
+  },
+  "printed": {
+    "currency": "USD"
+  },
+  "expected_issues": []
+}

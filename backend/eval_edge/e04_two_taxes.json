@@ -1,0 +1,41 @@
+{
+  "files": [
+    "e04_two_taxes.pdf"
+  ],
+  "expected": {
+    "invoice_number": "JOS-0091",
+    "invoice_date": "2025-10-01",
+    "supplier_name": "Jamuna Office Solutions",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "23000.00",
+    "tax": "2070.00",
+    "total": "27140.00",
+    "currency": "INR",
+    "line_items": [
+      {
+        "description": "Laser printer",
+        "quantity": "1",
+        "unit_price": "18000.00",
+        "discount": "",
+        "amount": "18000.00"
+      },
+      {
+        "description": "Toner",
+        "quantity": "2",
+        "unit_price": "2500.00",
+        "discount": "",
+        "amount": "5000.00"
+      }
+    ],
+    "adjustments": [
+      {
+        "label": "SGST 9%",
+        "amount": "2070.00"
+      }
+    ]
+  },
+  "printed": {
+    "currency": "INR"
+  },
+  "expected_issues": []
+}

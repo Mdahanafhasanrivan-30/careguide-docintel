@@ -1,0 +1,38 @@
+{
+  "files": [
+    "e06_no_subtotal.pdf"
+  ],
+  "expected": {
+    "invoice_number": "KT/2025/131",
+    "invoice_date": "2025-09-18",
+    "supplier_name": "Karnaphuli Traders",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": null,
+    "tax": "12.40",
+    "total": "74.40",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Digital thermometer",
+        "quantity": "4",
+        "unit_price": "12.50",
+        "discount": "",
+        "amount": "50.00"
+      },
+      {
+        "description": "AA batteries",
+        "quantity": "10",
+        "unit_price": "1.20",
+        "discount": "",
+        "amount": "12.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "GBP"
+  },
+  "expected_issues": [
+    "subtotal_missing"
+  ]
+}

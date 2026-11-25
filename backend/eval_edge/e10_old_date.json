@@ -1,0 +1,31 @@
+{
+  "files": [
+    "e10_old_date.pdf"
+  ],
+  "expected": {
+    "invoice_number": "KT/2015/007",
+    "invoice_date": "2015-06-30",
+    "supplier_name": "Karnaphuli Traders",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "320.00",
+    "tax": "16.00",
+    "total": "336.00",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Wheelchair",
+        "quantity": "1",
+        "unit_price": "320.00",
+        "discount": "",
+        "amount": "320.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "USD"
+  },
+  "expected_issues": [
+    "old_date"
+  ]
+}

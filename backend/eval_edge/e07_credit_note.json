@@ -1,0 +1,31 @@
+{
+  "files": [
+    "e07_credit_note.pdf"
+  ],
+  "expected": {
+    "invoice_number": "CN-2025-0012",
+    "invoice_date": "2025-10-05",
+    "supplier_name": "Meghna Lab Equipment",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "-174.50",
+    "tax": "-8.73",
+    "total": "-183.23",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Returned pipettes",
+        "quantity": "-2",
+        "unit_price": "87.25",
+        "discount": "",
+        "amount": "-174.50"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "BDT"
+  },
+  "expected_issues": [
+    "negative_total"
+  ]
+}

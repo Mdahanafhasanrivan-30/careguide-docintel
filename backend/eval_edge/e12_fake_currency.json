@@ -1,0 +1,31 @@
+{
+  "files": [
+    "e12_fake_currency.pdf"
+  ],
+  "expected": {
+    "invoice_number": "MLE-2025-0470",
+    "invoice_date": "2025-08-01",
+    "supplier_name": "Meghna Lab Equipment",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "120.00",
+    "tax": "12.00",
+    "total": "132.00",
+    "currency": "XYZ",
+    "line_items": [
+      {
+        "description": "Centrifuge tubes",
+        "quantity": "50",
+        "unit_price": "2.40",
+        "discount": "",
+        "amount": "120.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "XYZ"
+  },
+  "expected_issues": [
+    "currency_unknown"
+  ]
+}

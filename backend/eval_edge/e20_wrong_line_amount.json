@@ -1,0 +1,38 @@
+{
+  "files": [
+    "e20_wrong_line_amount.pdf"
+  ],
+  "expected": {
+    "invoice_number": "KT/2025/140",
+    "invoice_date": "2025-10-08",
+    "supplier_name": "Karnaphuli Traders",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "165.00",
+    "tax": "16.50",
+    "total": "181.50",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Pulse oximeter",
+        "quantity": "3",
+        "unit_price": "45.00",
+        "discount": "",
+        "amount": "145.00"
+      },
+      {
+        "description": "Gauze rolls",
+        "quantity": "10",
+        "unit_price": "2.00",
+        "discount": "",
+        "amount": "20.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "USD"
+  },
+  "expected_issues": [
+    "line_amount_mismatch"
+  ]
+}

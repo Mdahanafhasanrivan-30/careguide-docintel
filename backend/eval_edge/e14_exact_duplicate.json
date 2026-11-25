@@ -1,0 +1,43 @@
+{
+  "files": [
+    "e14_exact_duplicate.pdf"
+  ],
+  "expected": {
+    "invoice_number": "INV-7001",
+    "invoice_date": "2025-08-10",
+    "supplier_name": "Padma Medical Supplies Ltd",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "6900.00",
+    "tax": "983.25",
+    "total": "7538.25",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Nitrile gloves (box)",
+        "quantity": "10",
+        "unit_price": "450.00",
+        "discount": "",
+        "amount": "4500.00"
+      },
+      {
+        "description": "Face masks (pack)",
+        "quantity": "20",
+        "unit_price": "120.00",
+        "discount": "",
+        "amount": "2400.00"
+      }
+    ],
+    "adjustments": [
+      {
+        "label": "Discount (5%)",
+        "amount": "-345.00"
+      }
+    ]
+  },
+  "printed": {
+    "currency": "BDT"
+  },
+  "expected_issues": [
+    "duplicate_invoice"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "files": [
+    "e11_ambiguous_date.pdf"
+  ],
+  "expected": {
+    "invoice_number": "MLE-2025-0488",
+    "invoice_date": "2025-04-03",
+    "supplier_name": "Meghna Lab Equipment",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "420.00",
+    "tax": "21.00",
+    "total": "441.00",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Microscope slides",
+        "quantity": "12",
+        "unit_price": "35.00",
+        "discount": "",
+        "amount": "420.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "BDT",
+    "invoice_date": "03/04/2025"
+  },
+  "expected_issues": [
+    "ambiguous_date"
+  ]
+}

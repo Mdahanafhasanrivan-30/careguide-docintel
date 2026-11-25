@@ -1,0 +1,31 @@
+{
+  "files": [
+    "e09_future_date.pdf"
+  ],
+  "expected": {
+    "invoice_number": "INV-7010",
+    "invoice_date": "2030-01-15",
+    "supplier_name": "Padma Medical Supplies Ltd",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "1000.00",
+    "tax": "150.00",
+    "total": "1150.00",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Surgical caps (box)",
+        "quantity": "5",
+        "unit_price": "200.00",
+        "discount": "",
+        "amount": "1000.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "BDT"
+  },
+  "expected_issues": [
+    "future_date"
+  ]
+}

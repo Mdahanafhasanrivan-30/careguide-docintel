@@ -1,0 +1,43 @@
+{
+  "files": [
+    "e21_line_discount_column.pdf"
+  ],
+  "expected": {
+    "invoice_number": "MLE-2025-0501",
+    "invoice_date": "2025-11-10",
+    "supplier_name": "Meghna Lab Equipment",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "6850.00",
+    "tax": "342.50",
+    "total": "7192.50",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Lab coat",
+        "quantity": "5",
+        "unit_price": "800.00",
+        "discount": "10%",
+        "amount": "3600.00"
+      },
+      {
+        "description": "Safety goggles",
+        "quantity": "10",
+        "unit_price": "150.00",
+        "discount": "50.00",
+        "amount": "1450.00"
+      },
+      {
+        "description": "Gloves (box)",
+        "quantity": "4",
+        "unit_price": "450.00",
+        "discount": "",
+        "amount": "1800.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "BDT"
+  },
+  "expected_issues": []
+}

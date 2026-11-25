@@ -1,0 +1,41 @@
+{
+  "files": [
+    "e03_rounding.pdf"
+  ],
+  "expected": {
+    "invoice_number": "MLE-2025-0456",
+    "invoice_date": "2025-07-15",
+    "supplier_name": "Meghna Lab Equipment",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "1210.25",
+    "tax": "60.51",
+    "total": "1270.00",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Test tubes (100)",
+        "quantity": "7",
+        "unit_price": "135.50",
+        "discount": "",
+        "amount": "948.50"
+      },
+      {
+        "description": "Pipettes",
+        "quantity": "3",
+        "unit_price": "87.25",
+        "discount": "",
+        "amount": "261.75"
+      }
+    ],
+    "adjustments": [
+      {
+        "label": "Rounding",
+        "amount": "-0.76"
+      }
+    ]
+  },
+  "printed": {
+    "currency": "Tk"
+  },
+  "expected_issues": []
+}

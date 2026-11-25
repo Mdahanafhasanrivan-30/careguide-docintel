@@ -1,0 +1,31 @@
+{
+  "files": [
+    "e13_dollar_only.pdf"
+  ],
+  "expected": {
+    "invoice_number": "JOS-0105",
+    "invoice_date": "2025-10-20",
+    "supplier_name": "Jamuna Office Solutions",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "258.00",
+    "tax": "25.80",
+    "total": "283.80",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Office chair",
+        "quantity": "2",
+        "unit_price": "129.00",
+        "discount": "",
+        "amount": "258.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "$"
+  },
+  "expected_issues": [
+    "currency_assumed"
+  ]
+}

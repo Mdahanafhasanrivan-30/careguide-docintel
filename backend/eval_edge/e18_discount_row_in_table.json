@@ -1,0 +1,43 @@
+{
+  "files": [
+    "e18_discount_row_in_table.pdf"
+  ],
+  "expected": {
+    "invoice_number": "JOS-0112",
+    "invoice_date": "2025-11-02",
+    "supplier_name": "Jamuna Office Solutions",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "915.00",
+    "tax": "45.75",
+    "total": "960.75",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Wheelchair",
+        "quantity": "1",
+        "unit_price": "950.00",
+        "discount": "",
+        "amount": "950.00"
+      },
+      {
+        "description": "Delivery fee",
+        "quantity": "",
+        "unit_price": "",
+        "discount": "",
+        "amount": "15.00"
+      },
+      {
+        "description": "Loyalty discount",
+        "quantity": "",
+        "unit_price": "",
+        "discount": "",
+        "amount": "-50.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "USD"
+  },
+  "expected_issues": []
+}

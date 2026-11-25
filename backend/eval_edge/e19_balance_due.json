@@ -1,0 +1,36 @@
+{
+  "files": [
+    "e19_balance_due.pdf"
+  ],
+  "expected": {
+    "invoice_number": "JOS-0110",
+    "invoice_date": "2025-11-05",
+    "supplier_name": "Jamuna Office Solutions",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "500.00",
+    "tax": "0.00",
+    "total": "500.00",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Filing cabinet",
+        "quantity": "2",
+        "unit_price": "200.00",
+        "discount": "",
+        "amount": "400.00"
+      },
+      {
+        "description": "Desk lamp",
+        "quantity": "4",
+        "unit_price": "25.00",
+        "discount": "",
+        "amount": "100.00"
+      }
+    ],
+    "adjustments": []
+  },
+  "printed": {
+    "currency": "USD"
+  },
+  "expected_issues": []
+}
