@@ -1,0 +1,34 @@
+e01_discount.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e04_two_taxes.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e08_zero_total.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e10_old_date.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e14_exact_duplicate.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e21_line_discount_column.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e02_shipping.pdf  total=430.00  needs_review=False  MATCH
+e03_rounding.pdf  total=1270.00  needs_review=False  MATCH
+e05_tax_included.pdf  total=115.00  needs_review=True  MATCH
+    [warning] tax_included: total 115.00 equals the subtotal without tax; the tax 15.00 seems to be included in the prices (check the invoice says so)
+e06_no_subtotal.pdf  total=74.40  needs_review=True  MATCH
+    [warning] subtotal_missing: subtotal is not printed on the invoice
+e07_credit_note.pdf  total=-183.23  needs_review=True  MATCH
+    [warning] negative_total: total is negative (-183.23); this looks like a credit note or refund
+e09_future_date.pdf  total=1150.00  needs_review=True  MATCH
+    [error] future_date: invoice_date 2030-01-15 is in the future (today is 2026-11-25)
+e11_ambiguous_date.pdf  total=441.00  needs_review=True  MATCH
+    [warning] ambiguous_date: invoice_date "03/04/2025" could be day-first or month-first; read as 2025-04-03
+    (extraction) invoice_date: "03/04/2025" is ambiguous; read as day first
+e12_fake_currency.pdf  total=132.00  needs_review=True  MATCH
+    [error] currency_unknown: currency "XYZ" is not an ISO 4217 code
+e13_dollar_only.pdf  total=283.80  needs_review=True  MATCH
+    [warning] currency_assumed: currency is printed only as "$", which can mean USD, CAD, AUD, SGD, HKD and others; read as USD
+e15_supplier_spelling.pdf  total=115.00  needs_review=True  MATCH
+    [warning] tax_included: total 115.00 equals the subtotal without tax; the tax 15.00 seems to be included in the prices (check the invoice says so)
+    [error] duplicate_invoice: same supplier and invoice number inv 7002 as e05_tax_included.pdf; this invoice is probably entered twice
+e16_same_date_and_total.pdf  total=430.00  needs_review=True  MATCH
+    [warning] possible_duplicate: same supplier, date and total as e02_shipping.pdf (number KT/2025/118); it may be the same invoice renumbered
+e17_number_drift.pdf  total=366.45  needs_review=True  MATCH
+    [warning] possible_duplicate: invoice number 2025-0456 looks like MLE-2025-0456 in e03_rounding.pdf from the same supplier
+e18_discount_row_in_table.pdf  total=960.75  needs_review=False  MATCH
+e19_balance_due.pdf  total=500.00  needs_review=False  MATCH
+e20_wrong_line_amount.pdf  total=181.50  needs_review=True  MATCH
+    [error] line_amount_mismatch: line item 1: 3 x 45.00 = 135.00 but the invoice prints 145.00

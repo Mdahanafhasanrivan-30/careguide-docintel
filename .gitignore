@@ -7,3 +7,4 @@ node_modules/
 storage/
 .pytest_cache/
 .coverage
+backend/my_docs/

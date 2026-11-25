@@ -1,0 +1,3 @@
+e04_two_taxes.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e08_zero_total.pdf  total=0.00  needs_review=True  MATCH
+    [warning] zero_total: total is 0.00; check this is a real invoice (free item, test, void)

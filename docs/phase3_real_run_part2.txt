@@ -1,0 +1,8 @@
+e04_two_taxes.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e08_zero_total.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+e01_discount.pdf  total=7538.25  needs_review=False  MATCH
+e10_old_date.pdf  total=336.00  needs_review=True  MATCH
+    [warning] old_date: invoice_date 2015-06-30 is more than 5 years old
+e14_exact_duplicate.pdf  total=7538.25  needs_review=True  MATCH
+    [error] duplicate_invoice: same supplier and invoice number INV-7001 as e01_discount.pdf; this invoice is probably entered twice
+e21_line_discount_column.pdf  total=7192.50  needs_review=False  MATCH

@@ -13,7 +13,7 @@ from app.schemas.invoice import (
     Adjustment, DateField, FieldBase, InvoiceExtraction, LineItem, MoneyField, RawField, TextField,
 )
 
-PROMPT_VERSION = 'extract_invoice_v2'
+PROMPT_VERSION = 'extract_invoice_v3'
 PROMPT_DIR = Path(__file__).parent / 'prompts'
 MAX_CHARS = 60_000     # about 15k tokens; longer documents are cut (see warnings)
 

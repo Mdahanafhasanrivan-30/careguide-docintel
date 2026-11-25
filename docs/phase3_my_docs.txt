@@ -1,0 +1,2 @@
+my_docs/my2*.jpg  ERROR: file not found
+my2_discount_shipping.pdf  ERROR [extraction_failed]: LLM call failed: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
