@@ -8,3 +8,4 @@ storage/
 .pytest_cache/
 .coverage
 backend/my_docs/
+.cache/

@@ -164,3 +164,22 @@ A 503 means Gemini is busy, so trying again later can work. First the client tri
 
 How a job is stopped from running twice:
 There are three guards. First, each file's SHA-256 hash is unique in the database, so uploading the same file again returns the old document and does not start a new job. Second, the worker starts with one UPDATE that changes the status from "queued" to "parsing". The database does this in one step, so if the same job arrives twice, only one worker gets the document and the other skips it. Third, the job is queued only after the database commit, so the worker never looks for a row that is not saved yet..................................................................        [100%]
+
+
+## Phase 5: Search
+
+**What I built:** GET /api/v1/search with keyword, semantic, hybrid modes and filters.
+
+**Real results**
+- Keyword "INV-2025-1711" → inv_021, inv_003 (same invoice number)
+- Semantic "medical supplies invoice" → 3 hits, scores 0.73–0.77 (close together; see limits)
+- needs_review=true → 4 documents
+- New upload inv_010: indexed automatically, 2 chunks in 32 ms
+
+**Limits**
+- Semantic search always returns something; close scores mean weak matches
+- Keyword search reads the first 200,000 characters; semantic stores max 500 chunks
+- Failed documents (e.g. inv_021 before reprocess) are keyword-searchable only
+- After a manual correction, semantic chunks stay old until reindex
+
+again 2 docs have 503 error issues because of gemini being busy.231 passed in 8.64s

@@ -11,3 +11,5 @@ made synthetic data and test cases with AI in all the phases. Also AI helped me 
 Phase 3 (validation): Claude (Anthropic) wrote the step-by-step guide and the starting code for the validation rules, duplicate checks, test invoices and scripts, and tested it in its own environment. I typed the code, ran it against my data and the real Gemini API, found that prompt v2 misread rows inside the items table (e18), and changed to prompt v3 based on that result.
 
 | 2026-11-25 | Claude (chat) | Phase 4 guide and starting code (DB, API, Celery jobs, tests) | Typed all code myself, ran every checkpoint, debugged the startup and import errors, ran the live batch with real Gemini |
+
+phase 5 testing, debugging, bash commands and code editing.
