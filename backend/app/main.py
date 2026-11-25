@@ -4,6 +4,7 @@ from fastapi import Depends, FastAPI
 from fastapi.responses import JSONResponse
 from sqlalchemy import text
 
+from app.api import documents
 from app.core.config import settings
 from app.core.security import require_api_key
 from app.db.session import engine
@@ -11,7 +12,7 @@ from app.workers.celery_app import celery_app
 from app.workers.tasks import ping
 
 app = FastAPI(title="Document Intelligence API")
-
+app.include_router(documents.router)
 
 @app.get("/health")
 def health():
