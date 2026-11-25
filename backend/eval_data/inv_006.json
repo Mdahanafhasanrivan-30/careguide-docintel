@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_006.pdf",
+    "inv_006_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-8019",
+    "invoice_date": "2025-10-26",
+    "supplier_name": "Café Müller GmbH",
+    "customer_name": "Fabrikam Inc",
+    "subtotal": "2128.20",
+    "tax": "106.41",
+    "total": "2234.61",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Office chair",
+        "quantity": "16",
+        "unit_price": "129.00",
+        "amount": "2064.00"
+      },
+      {
+        "description": "USB keyboard",
+        "quantity": "3",
+        "unit_price": "18.90",
+        "amount": "56.70"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "2",
+        "unit_price": "3.75",
+        "amount": "7.50"
+      }
+    ]
+  }
+}

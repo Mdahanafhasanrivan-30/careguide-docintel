@@ -1,0 +1,32 @@
+{
+  "files": [
+    "inv_015.pdf",
+    "inv_015_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-5272",
+    "invoice_date": "2025-04-15",
+    "supplier_name": "Green Leaf Stationers",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "80.75",
+    "tax": "8.08",
+    "total": "88.83",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "5",
+        "unit_price": "3.75",
+        "amount": "18.75"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "10",
+        "unit_price": "6.20",
+        "amount": "62.00"
+      }
+    ]
+  }
+}

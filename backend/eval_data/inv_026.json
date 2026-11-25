@@ -1,0 +1,50 @@
+{
+  "files": [
+    "inv_026.pdf",
+    "inv_026_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-8478",
+    "invoice_date": "2025-03-10",
+    "supplier_name": "Riverside Printing Co",
+    "customer_name": "Tailspin Toys",
+    "subtotal": "2707.70",
+    "tax": "406.16",
+    "total": "3113.86",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Delivery fee",
+        "quantity": "17",
+        "unit_price": "15.00",
+        "amount": "255.00"
+      },
+      {
+        "description": "Laptop stand",
+        "quantity": "14",
+        "unit_price": "27.40",
+        "amount": "383.60"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "18",
+        "unit_price": "6.20",
+        "amount": "111.60"
+      },
+      {
+        "description": "Office chair",
+        "quantity": "15",
+        "unit_price": "129.00",
+        "amount": "1935.00"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "6",
+        "unit_price": "3.75",
+        "amount": "22.50"
+      }
+    ]
+  }
+}

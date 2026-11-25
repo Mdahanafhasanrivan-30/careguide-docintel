@@ -1,0 +1,50 @@
+{
+  "files": [
+    "inv_025.pdf",
+    "inv_025_scan.jpg"
+  ],
+  "edge_case": "european_numbers",
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-1757",
+    "invoice_date": "2025-05-06",
+    "supplier_name": "ACME Supplies Ltd",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "3805.20",
+    "tax": "190.26",
+    "total": "3995.46",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Toner cartridge",
+        "quantity": "7",
+        "unit_price": "45.00",
+        "amount": "315.00"
+      },
+      {
+        "description": "Consulting hour",
+        "quantity": "13",
+        "unit_price": "80.00",
+        "amount": "1040.00"
+      },
+      {
+        "description": "Office chair",
+        "quantity": "16",
+        "unit_price": "129.00",
+        "amount": "2064.00"
+      },
+      {
+        "description": "Laptop stand",
+        "quantity": "13",
+        "unit_price": "27.40",
+        "amount": "356.20"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "8",
+        "unit_price": "3.75",
+        "amount": "30.00"
+      }
+    ]
+  }
+}

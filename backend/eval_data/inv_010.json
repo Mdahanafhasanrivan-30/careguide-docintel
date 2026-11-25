@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_010.pdf",
+    "inv_010_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-4750",
+    "invoice_date": "2025-02-04",
+    "supplier_name": "Riverside Printing Co",
+    "customer_name": "Sunrise Pharmacy",
+    "subtotal": "1963.20",
+    "tax": "98.16",
+    "total": "2061.36",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Toner cartridge",
+        "quantity": "16",
+        "unit_price": "45.00",
+        "amount": "720.00"
+      },
+      {
+        "description": "Office chair",
+        "quantity": "7",
+        "unit_price": "129.00",
+        "amount": "903.00"
+      },
+      {
+        "description": "USB keyboard",
+        "quantity": "18",
+        "unit_price": "18.90",
+        "amount": "340.20"
+      }
+    ]
+  }
+}

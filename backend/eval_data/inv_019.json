@@ -1,0 +1,32 @@
+{
+  "files": [
+    "inv_019.pdf",
+    "inv_019_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-6974",
+    "invoice_date": "2025-01-21",
+    "supplier_name": "Café Müller GmbH",
+    "customer_name": "Sunrise Pharmacy",
+    "subtotal": "2358.00",
+    "tax": "235.80",
+    "total": "2593.80",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Office chair",
+        "quantity": "12",
+        "unit_price": "129.00",
+        "amount": "1548.00"
+      },
+      {
+        "description": "Toner cartridge",
+        "quantity": "18",
+        "unit_price": "45.00",
+        "amount": "810.00"
+      }
+    ]
+  }
+}

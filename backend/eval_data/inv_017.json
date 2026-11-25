@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_017.pdf",
+    "inv_017_scan.jpg"
+  ],
+  "edge_case": "no_customer",
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-2891",
+    "invoice_date": "2025-02-24",
+    "supplier_name": "Riverside Printing Co",
+    "customer_name": null,
+    "subtotal": "1190.85",
+    "tax": "178.63",
+    "total": "1369.48",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "11",
+        "unit_price": "3.75",
+        "amount": "41.25"
+      },
+      {
+        "description": "Office chair",
+        "quantity": "7",
+        "unit_price": "129.00",
+        "amount": "903.00"
+      },
+      {
+        "description": "Laptop stand",
+        "quantity": "9",
+        "unit_price": "27.40",
+        "amount": "246.60"
+      }
+    ]
+  }
+}

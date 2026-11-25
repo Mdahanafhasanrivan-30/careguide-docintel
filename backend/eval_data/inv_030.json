@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_030.pdf",
+    "inv_030_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-6363",
+    "invoice_date": "2025-04-19",
+    "supplier_name": "ACME Supplies Ltd",
+    "customer_name": "Contoso Health Ltd",
+    "subtotal": "496.10",
+    "tax": "49.61",
+    "total": "545.71",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Laptop stand",
+        "quantity": "14",
+        "unit_price": "27.40",
+        "amount": "383.60"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "9",
+        "unit_price": "6.20",
+        "amount": "55.80"
+      },
+      {
+        "description": "USB keyboard",
+        "quantity": "3",
+        "unit_price": "18.90",
+        "amount": "56.70"
+      }
+    ]
+  }
+}

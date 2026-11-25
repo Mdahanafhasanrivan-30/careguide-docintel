@@ -1,0 +1,44 @@
+{
+  "files": [
+    "inv_029.pdf",
+    "inv_029_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-1475",
+    "invoice_date": "2025-07-19",
+    "supplier_name": "ACME Supplies Ltd",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "1076.45",
+    "tax": "161.47",
+    "total": "1237.92",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "USB keyboard",
+        "quantity": "18",
+        "unit_price": "18.90",
+        "amount": "340.20"
+      },
+      {
+        "description": "Consulting hour",
+        "quantity": "1",
+        "unit_price": "80.00",
+        "amount": "80.00"
+      },
+      {
+        "description": "Toner cartridge",
+        "quantity": "13",
+        "unit_price": "45.00",
+        "amount": "585.00"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "19",
+        "unit_price": "3.75",
+        "amount": "71.25"
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "files": [
+    "inv_018.pdf",
+    "inv_018_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-6464",
+    "invoice_date": "2025-03-08",
+    "supplier_name": "Bengal Office Mart",
+    "customer_name": "Fabrikam Inc",
+    "subtotal": "1446.20",
+    "tax": "72.31",
+    "total": "1518.51",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Consulting hour",
+        "quantity": "18",
+        "unit_price": "80.00",
+        "amount": "1440.00"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "1",
+        "unit_price": "6.20",
+        "amount": "6.20"
+      }
+    ]
+  }
+}

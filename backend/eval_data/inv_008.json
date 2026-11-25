@@ -1,0 +1,44 @@
+{
+  "files": [
+    "inv_008.pdf",
+    "inv_008_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-9689",
+    "invoice_date": "2025-01-01",
+    "supplier_name": "Bengal Office Mart",
+    "customer_name": "Tailspin Toys",
+    "subtotal": "459.00",
+    "tax": "22.95",
+    "total": "481.95",
+    "currency": "EUR",
+    "line_items": [
+      {
+        "description": "Printer paper A4 (box)",
+        "quantity": "8",
+        "unit_price": "12.50",
+        "amount": "100.00"
+      },
+      {
+        "description": "Toner cartridge",
+        "quantity": "2",
+        "unit_price": "45.00",
+        "amount": "90.00"
+      },
+      {
+        "description": "USB keyboard",
+        "quantity": "8",
+        "unit_price": "18.90",
+        "amount": "151.20"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "19",
+        "unit_price": "6.20",
+        "amount": "117.80"
+      }
+    ]
+  }
+}

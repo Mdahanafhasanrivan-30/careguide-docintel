@@ -1,0 +1,44 @@
+{
+  "files": [
+    "inv_003.pdf",
+    "inv_003_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-1711",
+    "invoice_date": "2025-08-24",
+    "supplier_name": "Bengal Office Mart",
+    "customer_name": "Contoso Health Ltd",
+    "subtotal": "1254.60",
+    "tax": "188.19",
+    "total": "1442.79",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Toner cartridge",
+        "quantity": "20",
+        "unit_price": "45.00",
+        "amount": "900.00"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "12",
+        "unit_price": "3.75",
+        "amount": "45.00"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "19",
+        "unit_price": "6.20",
+        "amount": "117.80"
+      },
+      {
+        "description": "Laptop stand",
+        "quantity": "7",
+        "unit_price": "27.40",
+        "amount": "191.80"
+      }
+    ]
+  }
+}

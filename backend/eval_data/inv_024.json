@@ -1,0 +1,50 @@
+{
+  "files": [
+    "inv_024.pdf",
+    "inv_024_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-5700",
+    "invoice_date": "2025-04-18",
+    "supplier_name": "Green Leaf Stationers",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "2988.40",
+    "tax": "448.26",
+    "total": "3436.66",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Laptop stand",
+        "quantity": "17",
+        "unit_price": "27.40",
+        "amount": "465.80"
+      },
+      {
+        "description": "Consulting hour",
+        "quantity": "16",
+        "unit_price": "80.00",
+        "amount": "1280.00"
+      },
+      {
+        "description": "Office chair",
+        "quantity": "6",
+        "unit_price": "129.00",
+        "amount": "774.00"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "3",
+        "unit_price": "6.20",
+        "amount": "18.60"
+      },
+      {
+        "description": "Toner cartridge",
+        "quantity": "10",
+        "unit_price": "45.00",
+        "amount": "450.00"
+      }
+    ]
+  }
+}

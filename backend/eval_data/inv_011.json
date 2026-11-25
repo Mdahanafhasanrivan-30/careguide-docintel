@@ -1,0 +1,26 @@
+{
+  "files": [
+    "inv_011.pdf",
+    "inv_011_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-7939",
+    "invoice_date": "2025-07-30",
+    "supplier_name": "Green Leaf Stationers",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "90.00",
+    "tax": "9.00",
+    "total": "99.00",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Toner cartridge",
+        "quantity": "2",
+        "unit_price": "45.00",
+        "amount": "90.00"
+      }
+    ]
+  }
+}

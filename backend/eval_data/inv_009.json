@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_009.pdf",
+    "inv_009_scan.jpg"
+  ],
+  "edge_case": "wrong_total",
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-7932",
+    "invoice_date": "2025-04-19",
+    "supplier_name": "Northwind Traders",
+    "customer_name": "Dhaka Care Clinic",
+    "subtotal": "1032.40",
+    "tax": "51.62",
+    "total": "1094.02",
+    "currency": "EUR",
+    "line_items": [
+      {
+        "description": "Network cable 5 m",
+        "quantity": "17",
+        "unit_price": "6.20",
+        "amount": "105.40"
+      },
+      {
+        "description": "Laptop stand",
+        "quantity": "15",
+        "unit_price": "27.40",
+        "amount": "411.00"
+      },
+      {
+        "description": "Office chair",
+        "quantity": "4",
+        "unit_price": "129.00",
+        "amount": "516.00"
+      }
+    ]
+  }
+}

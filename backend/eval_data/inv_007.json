@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_007.pdf",
+    "inv_007_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": true,
+  "expected": {
+    "invoice_number": "INV-2025-1188",
+    "invoice_date": "2025-02-28",
+    "supplier_name": "Delta Tech Solutions",
+    "customer_name": "Fabrikam Inc",
+    "subtotal": "455.25",
+    "tax": "68.29",
+    "total": "523.54",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Toner cartridge",
+        "quantity": "6",
+        "unit_price": "45.00",
+        "amount": "270.00"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "15",
+        "unit_price": "3.75",
+        "amount": "56.25"
+      },
+      {
+        "description": "Office chair",
+        "quantity": "1",
+        "unit_price": "129.00",
+        "amount": "129.00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_027.pdf",
+    "inv_027_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-2269",
+    "invoice_date": "2025-05-27",
+    "supplier_name": "Orbit Electronics Ltd",
+    "customer_name": "Fabrikam Inc",
+    "subtotal": "175.95",
+    "tax": "8.80",
+    "total": "184.75",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Laptop stand",
+        "quantity": "3",
+        "unit_price": "27.40",
+        "amount": "82.20"
+      },
+      {
+        "description": "Delivery fee",
+        "quantity": "5",
+        "unit_price": "15.00",
+        "amount": "75.00"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "5",
+        "unit_price": "3.75",
+        "amount": "18.75"
+      }
+    ]
+  }
+}

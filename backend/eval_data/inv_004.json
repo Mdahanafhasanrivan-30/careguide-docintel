@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_004.pdf",
+    "inv_004_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-7227",
+    "invoice_date": "2025-05-23",
+    "supplier_name": "Café Müller GmbH",
+    "customer_name": "Sunrise Pharmacy",
+    "subtotal": "423.90",
+    "tax": "63.59",
+    "total": "487.49",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "USB keyboard",
+        "quantity": "7",
+        "unit_price": "18.90",
+        "amount": "132.30"
+      },
+      {
+        "description": "Laptop stand",
+        "quantity": "9",
+        "unit_price": "27.40",
+        "amount": "246.60"
+      },
+      {
+        "description": "Delivery fee",
+        "quantity": "3",
+        "unit_price": "15.00",
+        "amount": "45.00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "files": [
+    "inv_013.pdf",
+    "inv_013_scan.jpg"
+  ],
+  "edge_case": "no_currency",
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-5345",
+    "invoice_date": "2025-08-21",
+    "supplier_name": "ACME Supplies Ltd",
+    "customer_name": "Blue Sky Logistics",
+    "subtotal": "917.80",
+    "tax": "137.67",
+    "total": "1055.47",
+    "currency": null,
+    "line_items": [
+      {
+        "description": "Delivery fee",
+        "quantity": "10",
+        "unit_price": "15.00",
+        "amount": "150.00"
+      },
+      {
+        "description": "Consulting hour",
+        "quantity": "7",
+        "unit_price": "80.00",
+        "amount": "560.00"
+      },
+      {
+        "description": "Toner cartridge",
+        "quantity": "2",
+        "unit_price": "45.00",
+        "amount": "90.00"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "19",
+        "unit_price": "6.20",
+        "amount": "117.80"
+      }
+    ]
+  }
+}

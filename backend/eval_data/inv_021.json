@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_021.pdf",
+    "inv_021_scan.jpg"
+  ],
+  "edge_case": "duplicate_number",
+  "hard_scan": true,
+  "expected": {
+    "invoice_number": "INV-2025-1711",
+    "invoice_date": "2025-05-23",
+    "supplier_name": "Delta Tech Solutions",
+    "customer_name": "Fabrikam Inc",
+    "subtotal": "576.40",
+    "tax": "28.82",
+    "total": "605.22",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Laptop stand",
+        "quantity": "18",
+        "unit_price": "27.40",
+        "amount": "493.20"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "11",
+        "unit_price": "6.20",
+        "amount": "68.20"
+      },
+      {
+        "description": "Delivery fee",
+        "quantity": "1",
+        "unit_price": "15.00",
+        "amount": "15.00"
+      }
+    ]
+  }
+}

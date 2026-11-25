@@ -1,0 +1,32 @@
+{
+  "files": [
+    "inv_020.pdf",
+    "inv_020_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-7745",
+    "invoice_date": "2025-05-08",
+    "supplier_name": "Northwind Traders",
+    "customer_name": "Tailspin Toys",
+    "subtotal": "189.20",
+    "tax": "9.46",
+    "total": "198.66",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Toner cartridge",
+        "quantity": "2",
+        "unit_price": "45.00",
+        "amount": "90.00"
+      },
+      {
+        "description": "Network cable 5 m",
+        "quantity": "16",
+        "unit_price": "6.20",
+        "amount": "99.20"
+      }
+    ]
+  }
+}

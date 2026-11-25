@@ -1,0 +1,32 @@
+{
+  "files": [
+    "inv_001.pdf",
+    "inv_001_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-1409",
+    "invoice_date": "2025-05-21",
+    "supplier_name": "Orbit Electronics Ltd",
+    "customer_name": "Contoso Health Ltd",
+    "subtotal": "475.20",
+    "tax": "71.28",
+    "total": "546.48",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "USB keyboard",
+        "quantity": "18",
+        "unit_price": "18.90",
+        "amount": "340.20"
+      },
+      {
+        "description": "Toner cartridge",
+        "quantity": "3",
+        "unit_price": "45.00",
+        "amount": "135.00"
+      }
+    ]
+  }
+}

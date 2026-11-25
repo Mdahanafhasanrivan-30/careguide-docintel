@@ -1,0 +1,44 @@
+{
+  "files": [
+    "inv_012.pdf",
+    "inv_012_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-8579",
+    "invoice_date": "2025-05-08",
+    "supplier_name": "Orbit Electronics Ltd",
+    "customer_name": "Tailspin Toys",
+    "subtotal": "571.70",
+    "tax": "28.59",
+    "total": "600.29",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Delivery fee",
+        "quantity": "18",
+        "unit_price": "15.00",
+        "amount": "270.00"
+      },
+      {
+        "description": "Toner cartridge",
+        "quantity": "1",
+        "unit_price": "45.00",
+        "amount": "45.00"
+      },
+      {
+        "description": "Printer paper A4 (box)",
+        "quantity": "3",
+        "unit_price": "12.50",
+        "amount": "37.50"
+      },
+      {
+        "description": "Laptop stand",
+        "quantity": "8",
+        "unit_price": "27.40",
+        "amount": "219.20"
+      }
+    ]
+  }
+}

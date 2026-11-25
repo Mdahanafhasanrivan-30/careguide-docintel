@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_023.pdf",
+    "inv_023_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-9308",
+    "invoice_date": "2025-06-08",
+    "supplier_name": "Orbit Electronics Ltd",
+    "customer_name": "Fabrikam Inc",
+    "subtotal": "1177.25",
+    "tax": "176.59",
+    "total": "1353.84",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Network cable 5 m",
+        "quantity": "5",
+        "unit_price": "6.20",
+        "amount": "31.00"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "7",
+        "unit_price": "3.75",
+        "amount": "26.25"
+      },
+      {
+        "description": "Consulting hour",
+        "quantity": "14",
+        "unit_price": "80.00",
+        "amount": "1120.00"
+      }
+    ]
+  }
+}

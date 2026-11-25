@@ -1,0 +1,44 @@
+{
+  "files": [
+    "inv_028.pdf",
+    "inv_028_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": true,
+  "expected": {
+    "invoice_number": "INV-2025-7812",
+    "invoice_date": "2025-02-01",
+    "supplier_name": "Orbit Electronics Ltd",
+    "customer_name": "Medina Hospital",
+    "subtotal": "340.60",
+    "tax": "34.06",
+    "total": "374.66",
+    "currency": "BDT",
+    "line_items": [
+      {
+        "description": "Network cable 5 m",
+        "quantity": "13",
+        "unit_price": "6.20",
+        "amount": "80.60"
+      },
+      {
+        "description": "Printer paper A4 (box)",
+        "quantity": "16",
+        "unit_price": "12.50",
+        "amount": "200.00"
+      },
+      {
+        "description": "Delivery fee",
+        "quantity": "1",
+        "unit_price": "15.00",
+        "amount": "15.00"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "12",
+        "unit_price": "3.75",
+        "amount": "45.00"
+      }
+    ]
+  }
+}

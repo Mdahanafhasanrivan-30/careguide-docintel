@@ -1,0 +1,32 @@
+{
+  "files": [
+    "inv_016.pdf",
+    "inv_016_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-3170",
+    "invoice_date": "2025-06-28",
+    "supplier_name": "Delta Tech Solutions",
+    "customer_name": "Contoso Health Ltd",
+    "subtotal": "220.65",
+    "tax": "33.10",
+    "total": "253.75",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Laptop stand",
+        "quantity": "6",
+        "unit_price": "27.40",
+        "amount": "164.40"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "15",
+        "unit_price": "3.75",
+        "amount": "56.25"
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "files": [
+    "inv_005.pdf",
+    "inv_005_scan.jpg"
+  ],
+  "edge_case": "missing_tax",
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-1916",
+    "invoice_date": "2025-04-28",
+    "supplier_name": "Riverside Printing Co",
+    "customer_name": "Medina Hospital",
+    "subtotal": "252.15",
+    "tax": null,
+    "total": "252.15",
+    "currency": "EUR",
+    "line_items": [
+      {
+        "description": "Network cable 5 m",
+        "quantity": "7",
+        "unit_price": "6.20",
+        "amount": "43.40"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "19",
+        "unit_price": "3.75",
+        "amount": "71.25"
+      },
+      {
+        "description": "Printer paper A4 (box)",
+        "quantity": "11",
+        "unit_price": "12.50",
+        "amount": "137.50"
+      }
+    ]
+  }
+}

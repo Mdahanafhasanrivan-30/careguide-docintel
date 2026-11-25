@@ -1,0 +1,44 @@
+{
+  "files": [
+    "inv_022.pdf",
+    "inv_022_scan.jpg"
+  ],
+  "edge_case": null,
+  "hard_scan": false,
+  "expected": {
+    "invoice_number": "INV-2025-8149",
+    "invoice_date": "2025-09-19",
+    "supplier_name": "Northwind Traders",
+    "customer_name": "Blue Sky Logistics",
+    "subtotal": "2515.45",
+    "tax": "377.32",
+    "total": "2892.77",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Office chair",
+        "quantity": "14",
+        "unit_price": "129.00",
+        "amount": "1806.00"
+      },
+      {
+        "description": "Hand sanitizer 500 ml",
+        "quantity": "1",
+        "unit_price": "3.75",
+        "amount": "3.75"
+      },
+      {
+        "description": "Printer paper A4 (box)",
+        "quantity": "17",
+        "unit_price": "12.50",
+        "amount": "212.50"
+      },
+      {
+        "description": "Laptop stand",
+        "quantity": "18",
+        "unit_price": "27.40",
+        "amount": "493.20"
+      }
+    ]
+  }
+}
