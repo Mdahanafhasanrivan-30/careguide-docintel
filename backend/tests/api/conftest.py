@@ -25,6 +25,8 @@ def engine():
             pass
     except Exception:
         pytest.skip('docintel_test database not reachable (start postgres and create it, see the guide)')
+    with eng.begin() as conn:
+        conn.execute(text('CREATE EXTENSION IF NOT EXISTS vector'))
     Base.metadata.drop_all(eng)      # fresh tables that match the current models
     Base.metadata.create_all(eng)
     yield eng
