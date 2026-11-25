@@ -54,7 +54,7 @@ def test_happy_path_values_are_typed():
     assert result.currency.value == 'EUR'
     assert [i.amount for i in result.line_items] == [Decimal('125.00'), Decimal('120.00')]
     assert result.warnings == []
-    assert result.prompt_version == 'extract_invoice_v1'
+    assert result.prompt_version == 'extract_invoice_v2'
 
 
 def test_missing_field_stays_none():

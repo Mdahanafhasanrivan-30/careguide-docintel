@@ -22,7 +22,15 @@ class RawLineItem(BaseModel):
     quantity: str
     unit_price: str
     amount: str
+    discount: str = Field(default='', description='The line discount as printed (an amount or a '
+                                                  'percentage such as "10%"), or "" if the row has none')
     evidence: str = Field(description='The exact line from the document this item comes from')
+
+
+class RawAdjustment(BaseModel):
+    label: str = Field(description='The row label as printed, e.g. "Discount (5%)", "Shipping", "SGST 9%", "Rounding"')
+    amount: str = Field(description='The amount exactly as printed, including any minus sign or brackets')
+    evidence: str = Field(description='The exact line from the document this row comes from')
 
 
 class RawExtraction(BaseModel):
@@ -35,6 +43,19 @@ class RawExtraction(BaseModel):
     total: RawField
     currency: RawField
     line_items: list[RawLineItem]
+    adjustments: list[RawAdjustment] = Field(
+        default_factory=list,
+        description='Rows between subtotal and total that change the total: discounts, shipping, '
+                    'fees, extra tax lines, rounding. Not payments or balance due.')
+
+    @classmethod
+    def model_json_schema(cls, *args, **kwargs):
+        """The schema sent to Gemini marks every field required, so the model always answers
+        'adjustments' ([] when there are none). Python code may still leave it out (default [])."""
+        schema = super().model_json_schema(*args, **kwargs)
+        for part in [schema, *schema.get('$defs', {}).values()]:
+            part['required'] = list(part['properties'])
+        return schema
 
 
 # ---------------------------------------------------------------------------
@@ -68,6 +89,18 @@ class LineItem(BaseModel):
     quantity: Decimal | None = None
     unit_price: Decimal | None = None
     amount: Decimal | None = None
+    discount: Decimal | None = None           # money taken off this line, e.g. 5.00
+    discount_percent: Decimal | None = None   # or a percentage, e.g. 10 for "10%"
+
+
+AdjustmentKind = Literal['discount', 'charge', 'tax', 'rounding']
+
+
+class Adjustment(BaseModel):
+    label: str | None = None
+    kind: AdjustmentKind
+    amount: Decimal | None = None     # signed: a discount is negative, a charge positive
+    raw: str | None = None            # as printed
 
 
 class InvoiceExtraction(BaseModel):
@@ -80,6 +113,7 @@ class InvoiceExtraction(BaseModel):
     total: MoneyField
     currency: TextField
     line_items: list[LineItem] = Field(default_factory=list)
+    adjustments: list[Adjustment] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     prompt_version: str
     model: str

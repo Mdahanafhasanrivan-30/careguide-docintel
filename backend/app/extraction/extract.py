@@ -2,6 +2,7 @@ import time
 from pathlib import Path
 from typing import Callable
 
+from app.extraction.adjustments import adjustment_kind, signed_amount
 from app.extraction.errors import ExtractionError
 from app.extraction.evidence import evidence_found, value_in_evidence
 from app.extraction.llm import LLMClient
@@ -9,10 +10,10 @@ from app.extraction.normalise import (
     date_is_ambiguous, parse_amount, parse_currency, parse_date, parse_text,
 )
 from app.schemas.invoice import (
-    DateField, FieldBase, InvoiceExtraction, LineItem, MoneyField, RawField, TextField,
+    Adjustment, DateField, FieldBase, InvoiceExtraction, LineItem, MoneyField, RawField, TextField,
 )
 
-PROMPT_VERSION = 'extract_invoice_v1'
+PROMPT_VERSION = 'extract_invoice_v2'
 PROMPT_DIR = Path(__file__).parent / 'prompts'
 MAX_CHARS = 60_000     # about 15k tokens; longer documents are cut (see warnings)
 
@@ -44,19 +45,49 @@ def _check(name: str, raw: RawField, source: str, parse: Callable, cls: type[Fie
     return cls(value=value, raw=value_text, evidence=evidence, confidence=confidence, status='ok')
 
 
+def _abs(value):
+    return None if value is None else abs(value)
+
+
 def _line_items(raw_items, source: str, warnings: list[str]) -> list[LineItem]:
     items: list[LineItem] = []
     for number, item in enumerate(raw_items, start=1):
         if not evidence_found(item.evidence, source):
             warnings.append(f'line item {number}: evidence not found in the document; dropped')
             continue
+        discount = item.discount.strip()
+        is_percent = discount.endswith('%')
         items.append(LineItem(
             description=parse_text(item.description),
             quantity=parse_amount(item.quantity),
             unit_price=parse_amount(item.unit_price),
             amount=parse_amount(item.amount),
+            discount=None if is_percent else _abs(parse_amount(discount)),
+            discount_percent=_abs(parse_amount(discount)) if is_percent else None,
         ))
     return items
+
+
+def _adjustments(raw_items, source: str, warnings: list[str]) -> list[Adjustment]:
+    out: list[Adjustment] = []
+    for number, adj in enumerate(raw_items, start=1):
+        amount_text = adj.amount.strip()
+        if not amount_text:
+            continue
+        if not (evidence_found(adj.evidence, source) and value_in_evidence(amount_text, adj.evidence)):
+            warnings.append(f'adjustment {number}: "{adj.label} {amount_text}" not found in the document; dropped')
+            continue
+        label = parse_text(adj.label)
+        kind = adjustment_kind(label)
+        if kind == 'payment':          # a payment does not change the invoice total
+            warnings.append(f'adjustment {number}: "{label}" is a payment, not part of the total; ignored')
+            continue
+        value = parse_amount(amount_text)
+        if value is None:
+            warnings.append(f'adjustment {number}: could not read "{amount_text}"')
+        out.append(Adjustment(label=label, kind=kind, raw=amount_text,
+                              amount=None if value is None else signed_amount(kind, value)))
+    return out
 
 
 def extract_invoice(text: str, client: LLMClient,
@@ -90,6 +121,7 @@ def extract_invoice(text: str, client: LLMClient,
         total=check('total', parse_amount, MoneyField),
         currency=check('currency', parse_currency, TextField),
         line_items=_line_items(raw.line_items, text, warnings),
+        adjustments=_adjustments(raw.adjustments, text, warnings),
         warnings=warnings,
         prompt_version=prompt_version,
         model=result.model,
