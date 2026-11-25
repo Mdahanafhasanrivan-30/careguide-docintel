@@ -8,6 +8,8 @@ class Settings(BaseSettings):
     gemini_api_key: str = ''
     llm_model: str = 'gemini-3.5-flash-lite'
     llm_min_interval: float = 5.0  # seconds between calls: 60 divided by the requests per minute you may use
+    storage_dir: str = '/code/storage'   # uploaded files; shared by api and worker through the ./backend mount
+    max_files_per_upload: int = 20
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 

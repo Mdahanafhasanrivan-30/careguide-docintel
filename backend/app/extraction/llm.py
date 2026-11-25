@@ -5,7 +5,7 @@ from typing import Protocol
 
 from pydantic import ValidationError
 
-from app.extraction.errors import ExtractionError
+from app.extraction.errors import ExtractionError, LLMUnavailable
 from app.schemas.invoice import RawExtraction
 
 RETRY_CODES = {429, 500, 502, 503, 504}  # temporary problems worth another try
@@ -64,17 +64,18 @@ class GeminiClient:
             try:
                 return self._client.models.generate_content(model=self.model, contents=user, config=config)
             except self._api_error as exc:
-                if exc.code not in RETRY_CODES or attempt == self._max_retries:
+                if exc.code not in RETRY_CODES:
                     raise ExtractionError(f'LLM call failed: {exc.code} {exc.message}') from exc
+                if attempt == self._max_retries:
+                    raise LLMUnavailable(f'LLM busy after {attempt + 1} tries: {exc.code} {exc.message}') from exc
                 time.sleep(15 * 2**attempt)  # 15 s, 30 s, 60 s
-
     def extract(self, system: str, user: str) -> LLMResult:
         try:
             response = self._generate(system, user)
         except ExtractionError:
             raise
         except Exception as exc:  # timeouts and network errors come from the HTTP layer
-            raise ExtractionError(f'LLM call failed: {exc}') from exc
+            raise LLMUnavailable(f'LLM call failed: {exc}') from exc
         candidate = response.candidates[0] if response.candidates else None
         reason = candidate.finish_reason.name if candidate and candidate.finish_reason else 'NO_ANSWER'
         if reason != 'STOP':
