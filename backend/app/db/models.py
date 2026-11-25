@@ -2,20 +2,30 @@ import uuid
 from datetime import date, datetime
 from decimal import Decimal
 
+from pgvector.sqlalchemy import Vector
 from sqlalchemy import (
-    BigInteger, DateTime, ForeignKey, Numeric, String, Text, UniqueConstraint, func,
+    BigInteger, Computed, DateTime, ForeignKey, Index, Numeric, String, Text, UniqueConstraint, func,
 )
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import JSONB, TSVECTOR
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+from app.search.embed import DIM
 
 # queued -> parsing -> extracting -> validating -> done, or failed at any step
 IN_PROGRESS = ('parsing', 'extracting', 'validating')
 
+# Keyword search reads this. Postgres keeps it up to date by itself (a generated column), also
+# after a correction. left(...) keeps the tsvector under Postgres's 1 MB limit for huge files.
+SEARCH_EXPR = (
+    "to_tsvector('english', coalesce(filename, '') || ' ' || coalesce(invoice_number, '') || ' ' || "
+    "coalesce(supplier_name, '') || ' ' || left(coalesce(text, ''), 200000))"
+)
+
 
 class Document(Base):
     __tablename__ = 'documents'
+    __table_args__ = (Index('ix_documents_search_vector', 'search_vector', postgresql_using='gin'),)
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     filename: Mapped[str] = mapped_column(String(255))
@@ -42,6 +52,7 @@ class Document(Base):
     invoice_date: Mapped[date | None]
     total: Mapped[Decimal | None] = mapped_column(Numeric(14, 2))
     currency: Mapped[str | None] = mapped_column(String(10))
+    search_vector: Mapped[str | None] = mapped_column(TSVECTOR, Computed(SEARCH_EXPR, persisted=True))
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(),
@@ -87,3 +98,19 @@ class ProcessingEvent(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     document: Mapped[Document] = relationship(back_populates='events')
+
+
+class DocumentChunk(Base):
+    """A piece of a document's text and its embedding, for semantic search."""
+    __tablename__ = 'document_chunks'
+    __table_args__ = (
+        Index('ix_document_chunks_embedding_hnsw', 'embedding', postgresql_using='hnsw',
+              postgresql_with={'m': 16, 'ef_construction': 64},
+              postgresql_ops={'embedding': 'vector_cosine_ops'}),
+    )
+
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    document_id: Mapped[uuid.UUID] = mapped_column(ForeignKey('documents.id', ondelete='CASCADE'), index=True)
+    chunk_index: Mapped[int]
+    text: Mapped[str] = mapped_column(Text)
+    embedding: Mapped[list[float]] = mapped_column(Vector(DIM))
