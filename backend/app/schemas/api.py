@@ -89,3 +89,10 @@ class SearchResponse(BaseModel):
     mode: str                         # keyword | semantic | hybrid | filter (no query text)
     count: int
     hits: list[SearchHit]
+
+
+
+class DocumentText(BaseModel):
+    text: str
+    length: int                       # characters in the full text
+    truncated: bool                   # True when only the first part is sent

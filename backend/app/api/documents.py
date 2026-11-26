@@ -1,7 +1,9 @@
+import mimetypes
 import uuid
-from pathlib import PurePosixPath
+from pathlib import Path, PurePosixPath
 
 from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile
+from fastapi.responses import FileResponse
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
@@ -15,7 +17,7 @@ from app.pipeline.errors import DocumentError
 from app.pipeline.parser import MAX_FILE_BYTES
 from app.schemas.api import (
     CorrectionIn, DocumentDetail, DocumentSummary, EventOut, History, ReprocessResult,
-    UploadResult, VersionOut,
+    UploadResult, VersionOut,DocumentText
 )
 from app.schemas.invoice import InvoiceExtraction
 from app.services.corrections import CorrectionError, apply_corrections
@@ -205,3 +207,27 @@ def reprocess(doc_id: uuid.UUID, force: bool = False, db: Session = Depends(get_
     db.commit()
     _queue(db, doc)
     return doc
+
+
+
+
+TEXT_LIMIT = 200_000      # characters sent to the browser; a 1000-page PDF has far more
+
+
+@router.get('/{doc_id}/file')
+def get_file(doc_id: uuid.UUID, db: Session = Depends(get_db)):
+    """The original upload, shown inline (PDF viewer or image) in the review page."""
+    doc = _get(db, doc_id)
+    path = Path(doc.storage_path)
+    if not path.is_file():
+        raise HTTPException(404, 'The stored file is missing')
+    media_type = doc.mime_type or mimetypes.guess_type(doc.filename)[0] or 'application/octet-stream'
+    return FileResponse(path, media_type=media_type, filename=doc.filename, content_disposition_type='inline',
+                        headers={'X-Content-Type-Options': 'nosniff'})   # the browser must not guess another type
+
+
+@router.get('/{doc_id}/text', response_model=DocumentText)
+def get_text(doc_id: uuid.UUID, db: Session = Depends(get_db)):
+    """The parsed text, for the review page and for spreadsheets that a browser cannot show."""
+    text = _get(db, doc_id).text or ''
+    return DocumentText(text=text[:TEXT_LIMIT], length=len(text), truncated=len(text) > TEXT_LIMIT)
