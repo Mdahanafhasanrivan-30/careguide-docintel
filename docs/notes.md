@@ -183,3 +183,45 @@ There are three guards. First, each file's SHA-256 hash is unique in the databas
 - After a manual correction, semantic chunks stay old until reindex
 
 again 2 docs have 503 error issues because of gemini being busy.231 passed in 8.64s
+
+
+## Phase 6 — Frontend (Next.js)
+
+I built a Next.js (App Router) frontend with four screens:
+
+- **Upload** (`/`): drag and drop or click to choose files. Three uploads run at once, each with its own progress bar. The file picker only shows accepted types (PDF, PNG, JPG), and wrong types are refused before anything is sent.
+- **Documents** (`/documents`): every document with its status, review flag, supplier, invoice number, date and total. Filters for status and review state. Failed documents get a Reprocess button, and there is a "Reprocess all failed" button.
+- **Document review** (`/documents/<id>`): the original file on the left (PDF, or the scanned image) and the extracted text in a second tab. The extracted fields are on the right, each with the evidence the model quoted and a confidence badge. The issues list explains why a document needs review, and clicking an issue jumps to its field. Fields can be corrected and saved as a new version, and a timeline shows every processing step.
+- **Search** (`/search`): keyword, semantic and hybrid modes, filters (supplier, currency, dates, total range, review state), and highlighted matches in the snippets.
+
+### Design decisions
+
+- **The API key never reaches the browser.** The browser only calls `/api/...` on the Next.js server. A catch-all route handler (`app/api/[...path]/route.js`) adds the `X-API-Key` header and forwards the request to FastAPI inside Docker. Anything named `NEXT_PUBLIC_...` ends up in browser JavaScript, where anyone can read it with F12. Because the proxy keeps everything on one origin, there is no CORS setup, and an iframe can show the original PDF even though an iframe cannot send headers.
+- **Polling instead of WebSockets.** TanStack Query polls every 2 seconds, but only while a document is still processing, and stops by itself when everything is finished. For one reviewer that is cheap and simple. Server-Sent Events would be the next step for many users.
+- **TanStack Query for server data.** It caches by key, retries only on network and 5xx errors, and refreshes the list and search after a correction.
+- **Everything runs in Docker.** A `web` service (node:22-alpine) runs next to the api, worker, Postgres and Redis, so nothing needs to be installed on the host.
+
+### Results
+
+| Check | Result |
+|---|---|
+| Backend tests (incl. 4 new for the file and text endpoints) | **235 passed** |
+| Proxy: `GET /api/v1/documents` through Next.js | 200, all documents returned; the key is added on the server |
+| Upload of `inv_002.pdf` | Progress bar → queued → processed to **done**, needs review (Green Leaf Stationers, 494.34 EUR) |
+| File picker | Shows only accepted types |
+| Documents list | 9 documents: 8 done, 1 failed (`broken.pdf`, "Cannot open PDF"), 6 need review |
+| Review page, `inv_009.pdf` | All 8 header fields extracted with quoted evidence; dates normalised (19/04/2025 → 2025-04-19) and European numbers converted (1.032,40 → 1032.40) |
+| Validation caught a real error | `inv_009`: subtotal 1032.40 + tax 51.62 = **1084.02**, but the invoice prints **1094.02**, so it was flagged as an error |
+| Review page, `inv_014_scan.jpg` | Scanned image shown; all 8 fields extracted from the image; 1 warning |
+| Search page | Keyword, semantic, hybrid and filter-only searches work (Checkpoint 7) |
+
+### Problems I hit and fixed
+
+- **Port 3000 was already taken on my machine**, so Docker could not start the web container. I mapped it to `3001:3000`, and the app runs on http://localhost:3001.
+- **The Documents page showed a 404.** I had saved the list page code inside `app/documents/[id]/` instead of `app/documents/`. In the App Router the folder decides the URL, so moving the file fixed it.
+
+### Honest limits
+
+- **Confidence is not informative.** Gemini reports its own confidence, and it gave 100% on almost every field, even on scans. The validation rules (totals, tax, dates, duplicates) are what actually catch errors, like the 1094.02 total above.
+- Semantic search chunks are not rebuilt after a manual correction. The keyword index and filters do use the corrected values.
+- Polling is fine for one reviewer but would not scale to many open tabs. SSE or WebSockets would be the upgrade.
