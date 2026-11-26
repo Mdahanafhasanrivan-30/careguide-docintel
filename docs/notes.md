@@ -220,6 +220,14 @@ I built a Next.js (App Router) frontend with four screens:
 - **Port 3000 was already taken on my machine**, so Docker could not start the web container. I mapped it to `3001:3000`, and the app runs on http://localhost:3001.
 - **The Documents page showed a 404.** I had saved the list page code inside `app/documents/[id]/` instead of `app/documents/`. In the App Router the folder decides the URL, so moving the file fixed it.
 
+
+| Batch upload of 5 files at once | 4 invoices uploaded with their own progress bars; `inv_013.json` was rejected ("file type not accepted") before sending |
+| Live processing | All 4 moved from queued to **done** by themselves, one at a time, with no page reload |
+| Processing time (batch of 4, worker runs one at a time) | `inv_013.pdf` 5.5 s of work (Gemini 5.1 s), 6 s upload to done. `inv_025.pdf` 7.0 s (Gemini 6.9 s), 13 s. `inv_009_scan.jpg` 8.8 s (OCR parse 1.4 s, Gemini 7.3 s), 22 s including queue time. Gemini is 80–99% of the work; scans add OCR time, while PDFs parse in under 0.1 s |
+| `inv_009_scan.jpg` (scan of the same invoice as `inv_009.pdf`) | Two real issues found from the image: **total_mismatch** (1032.40 + 51.62 = 1084.02, printed 1094.02) and **duplicate_invoice** (same supplier and INV-2025-7932 as `inv_009.pdf`) |
+| Manual correction | Clicking the issue jumped to Total; I checked the scan and saved 1084.02. total_mismatch disappeared, version 2 (manual) was created, and the duplicate stayed, which is correct |
+| Corrected value is searchable | Search with total 1084–1084.02 finds `inv_009_scan.jpg` straight after the correction |
+
 ### Honest limits
 
 - **Confidence is not informative.** Gemini reports its own confidence, and it gave 100% on almost every field, even on scans. The validation rules (totals, tax, dates, duplicates) are what actually catch errors, like the 1094.02 total above.
