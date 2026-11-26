@@ -4,7 +4,29 @@ Upload invoices as PDF, scanned image, Excel or CSV; the system extracts the key
 
 **Measured on 60 labelled files:** 99.2% of fields correct (PDF 100%, scans 98.3%), 100% of documents processed, all 10 planted errors flagged. Full report: [EVALUATION.md](EVALUATION.md).
 
-**Walkthrough video:** (link added in Step 6)
+## Deliverables: where to find everything
+
+This repository contains every part of the assessment except the walkthrough video, which is shared as a Google Drive link. Here is where each deliverable lives and the quickest way to check it.
+
+**1. Source code.** Everything is in this repository. The backend (FastAPI, Celery worker, pipeline, AI extraction, validation, search) is in `backend/app/`, and the web app is in `frontend/`. The [Project layout](#project-layout) section below explains each folder.
+
+**2. README and setup.** You are reading it. The [Quick start](#quick-start) section takes you from `git clone` to a running system with one `docker compose up`. You only need Docker and a free Gemini API key.
+
+**3. Architecture diagram and database schema.** Both are drawn in this README ([Architecture](#architecture) and [Database schema](#database-schema)) and render directly on GitHub. The schema in code is `backend/app/db/models.py`, and the migrations that create it are in `backend/alembic/versions/`.
+
+**4. Working backend API and frontend.** Start the system with the Quick start, then open the web app at http://localhost:3001 and the interactive API documentation at http://localhost:8000/docs. The API is in `backend/app/api/` (documents, corrections, reprocessing and search endpoints), and the four screens (Upload, Documents, Review, Search) are in `frontend/app/`. The walkthrough video shows all of it in use.
+
+**5. PDF, image, Excel and CSV pipelines.** Parsing is in `backend/app/pipeline/`: PDFs are read from their text layer with PyMuPDF, scans and images are cleaned with OpenCV and read with Tesseract OCR, and Excel and CSV files are read with pandas and openpyxl. AI extraction is in `backend/app/extraction/`, validation in `backend/app/validation/`, and the worker that runs the stages in order is `backend/app/services/processing.py`.
+
+**6. Automated tests and results.** There are 249 tests in `backend/tests/`, covering parsing, extraction with a fake model (so no network is needed), the validation rules and 21 edge cases, the API, the worker, search and the evaluation scoring. The full output of the last run is in [docs/test_results.txt](docs/test_results.txt). To run them yourself, see Quick start.
+
+**7. Evaluation report with measured metrics.** [EVALUATION.md](EVALUATION.md) reports extraction accuracy per field and per format, processing time per stage with percentiles, and success and failure rates, all measured end to end on 60 labelled files. The raw output of that run is [docs/eval_run.md](docs/eval_run.md). The script that produced it is `backend/scripts/run_eval.py`, the scoring rules are in `backend/app/evaluation/scoring.py`, and the labelled dataset is in `backend/eval_data/`.
+
+**8. Recorded walkthrough.** A video of about 9 minutes showing the system working, its architecture, the code, the tests and the evaluation: [Google Drive link](PASTE-DRIVE-LINK).
+
+**9. AI prompts and AI-assisted development.** The extraction prompts are versioned files (`extract_invoice_v1.md` to `extract_invoice_v3.md`); every stored extraction records which prompt version produced it. How I used AI while building the project, phase by phase, and what I did myself, is described in [docs/AI_USAGE.md](docs/AI_USAGE.md). My own notes and measurements from each phase are in [docs/notes.md](docs/notes.md).
+
+**Walkthrough video:** 
 
 ## Quick start
 
